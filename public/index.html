@@ -10,16 +10,31 @@
     <main class="shell">
       <section id="loginView" class="login-view">
         <div class="brand-panel">
-          <p class="eyebrow">Laboratoire d'innovation</p>
-          <h1>Gestion de maintenance</h1>
+          <div class="institution-strip">
+            <img src="./assets/image1.png" alt="AREF Fes Meknes" />
+          </div>
+          <div class="brand-lockup">
+            <img class="bts-logo" src="./assets/image2.jpg" alt="BTS" />
+            <div>
+              <p class="eyebrow">Academie regionale Fes-Meknes</p>
+              <h1>Gestion de maintenance</h1>
+            </div>
+          </div>
           <p>
-            Suivi des equipements informatiques et audiovisuels, interventions,
-            maintenances et notifications.
+            Plateforme interne pour le suivi des equipements informatiques et
+            audiovisuels, des pannes, des interventions et des maintenances.
           </p>
+          <div class="brand-metrics" aria-label="Apercu du systeme">
+            <span>Inventaire</span>
+            <span>Interventions</span>
+            <span>Statistiques</span>
+          </div>
         </div>
 
         <form id="loginForm" class="login-card">
+          <img class="login-logo" src="./assets/image2.jpg" alt="BTS" />
           <h2>Connexion</h2>
+          <p class="login-subtitle">Espace de gestion du laboratoire</p>
           <label>
             Email
             <input id="loginEmail" type="email" required placeholder="admin@test.com" />
@@ -35,9 +50,12 @@
 
       <section id="appView" class="app-view hidden">
         <aside class="sidebar">
-          <div>
-            <p class="eyebrow">Maintenance</p>
-            <h2>GMAO Lab</h2>
+          <div class="sidebar-brand">
+            <img src="./assets/image2.jpg" alt="BTS" />
+            <div>
+              <p class="eyebrow">AREF Fes-Meknes</p>
+              <h2>GMAO Lab</h2>
+            </div>
           </div>
           <nav>
             <button class="nav-button active" data-section="dashboard">Dashboard</button>
@@ -51,6 +69,9 @@
         </aside>
 
         <section class="content">
+          <div class="academy-banner">
+            <img src="./assets/image1.png" alt="Academie regionale Fes-Meknes" />
+          </div>
           <header class="topbar">
             <div>
               <p id="userRole" class="eyebrow"></p>

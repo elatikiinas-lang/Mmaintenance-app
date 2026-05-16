@@ -1,14 +1,17 @@
 :root {
-  --bg: #f5f7fb;
+  --bg: #f4f1ea;
   --panel: #ffffff;
-  --ink: #172033;
-  --muted: #647086;
-  --line: #dce3ee;
-  --accent: #0f766e;
-  --accent-dark: #115e59;
+  --ink: #14213d;
+  --muted: #667085;
+  --line: #dfd7c8;
+  --accent: #0b6f6a;
+  --accent-dark: #084f4c;
+  --navy: #0f2742;
+  --gold: #c99a2e;
+  --gold-soft: #fff5d9;
   --danger: #b42318;
   --warning: #b54708;
-  --soft: #eef6f5;
+  --soft: #edf7f6;
 }
 
 * {
@@ -20,7 +23,11 @@ body {
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--ink);
-  background: var(--bg);
+  background:
+    linear-gradient(90deg, rgba(15, 39, 66, 0.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(15, 39, 66, 0.04) 1px, transparent 1px),
+    var(--bg);
+  background-size: 28px 28px;
 }
 
 button,
@@ -45,22 +52,66 @@ button {
 .login-view {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.85fr);
 }
 
 .brand-panel {
-  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  padding: 52px 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #0f766e, #174ea6);
+  gap: 24px;
+  background:
+    linear-gradient(rgba(15, 39, 66, 0.72), rgba(9, 77, 74, 0.82)),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 18px),
+    var(--navy);
   color: #fff;
 }
 
+.brand-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 12px;
+  background: linear-gradient(90deg, var(--gold), #f2d47b, var(--accent));
+}
+
+.institution-strip {
+  width: min(680px, 100%);
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.institution-strip img,
+.academy-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.bts-logo {
+  width: 96px;
+  height: 76px;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: #fff;
+}
+
 .brand-panel h1 {
-  max-width: 720px;
-  margin: 10px 0 18px;
-  font-size: clamp(40px, 6vw, 78px);
+  max-width: 820px;
+  margin: 8px 0 0;
+  font-size: clamp(42px, 5.8vw, 74px);
   line-height: 1;
 }
 
@@ -68,6 +119,22 @@ button {
   max-width: 620px;
   font-size: 18px;
   line-height: 1.6;
+}
+
+.brand-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-metrics span {
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .eyebrow {
@@ -80,22 +147,34 @@ button {
 }
 
 .brand-panel .eyebrow {
-  color: #d7fffb;
+  color: #f2d47b;
 }
 
 .login-card {
   align-self: center;
   width: min(420px, calc(100% - 40px));
   margin: auto;
-  padding: 30px;
+  padding: 34px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  box-shadow: 0 20px 60px rgba(23, 32, 51, 0.12);
+  box-shadow: 0 24px 70px rgba(15, 39, 66, 0.16);
 }
 
 .login-card h2 {
-  margin-top: 0;
+  margin: 8px 0 4px;
+  font-size: 28px;
+}
+
+.login-logo {
+  width: 86px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.login-subtitle {
+  margin: 0 0 22px;
+  color: var(--muted);
 }
 
 label {
@@ -111,12 +190,19 @@ input,
 select,
 textarea {
   width: 100%;
-  min-height: 42px;
-  padding: 10px 12px;
+  min-height: 44px;
+  padding: 11px 12px;
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--ink);
-  background: #fff;
+  background: #fffdf8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgba(201, 154, 46, 0.18);
+  border-color: var(--gold);
 }
 
 textarea {
@@ -157,7 +243,7 @@ button:hover {
 .app-view {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 282px 1fr;
 }
 
 .sidebar {
@@ -168,16 +254,35 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  background: #172033;
+  background:
+    linear-gradient(180deg, #102a46 0%, #0d2238 66%, #081828 100%);
   color: #fff;
+  border-right: 4px solid var(--gold);
 }
 
 .sidebar .eyebrow {
-  color: #9fb4d2;
+  color: #f2d47b;
 }
 
-.sidebar h2 {
+.sidebar h2,
+.sidebar p {
   margin: 6px 0 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-brand img {
+  width: 58px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
 }
 
 nav {
@@ -197,17 +302,27 @@ nav {
 
 .nav-button:hover,
 .nav-button.active {
-  background: #23304a;
+  border-color: rgba(242, 212, 123, 0.24);
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
 }
 
 .logout-button {
   margin-top: auto;
-  border-color: #3b4a68;
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .content {
   min-width: 0;
-  padding: 28px;
+  padding: 24px 28px 36px;
+}
+
+.academy-banner {
+  margin-bottom: 18px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .topbar {
@@ -216,6 +331,10 @@ nav {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 18px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(90deg, #fff, #fff9ea);
 }
 
 .topbar h1 {
@@ -235,13 +354,19 @@ nav {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background: linear-gradient(180deg, #fff, #fffcf3);
+  box-shadow: 0 10px 28px rgba(15, 39, 66, 0.07);
+}
+
+.stat-card {
+  border-top: 4px solid var(--gold);
 }
 
 .stat-card strong {
   display: block;
   margin-top: 8px;
   font-size: 32px;
+  color: var(--navy);
 }
 
 .panel {
@@ -249,7 +374,7 @@ nav {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .form-grid {
@@ -260,7 +385,7 @@ nav {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .form-grid textarea {
@@ -271,7 +396,8 @@ nav {
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 28px rgba(15, 39, 66, 0.06);
 }
 
 table {
@@ -289,9 +415,14 @@ td {
 }
 
 th {
-  color: var(--muted);
+  color: #475467;
   font-size: 13px;
   text-transform: uppercase;
+  background: #f8f1df;
+}
+
+tbody tr:hover {
+  background: #fffaf0;
 }
 
 tr:last-child td {
@@ -338,6 +469,11 @@ tr:last-child td {
   .brand-panel {
     min-height: 42vh;
     padding: 36px 24px;
+  }
+
+  .brand-lockup {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .sidebar {
