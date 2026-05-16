@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion Maintenance</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section id="loginView" class="login-view">
+        <div class="brand-panel">
+          <p class="eyebrow">Laboratoire d'innovation</p>
+          <h1>Gestion de maintenance</h1>
+          <p>
+            Suivi des equipements informatiques et audiovisuels, interventions,
+            maintenances et notifications.
+          </p>
+        </div>
+
+        <form id="loginForm" class="login-card">
+          <h2>Connexion</h2>
+          <label>
+            Email
+            <input id="loginEmail" type="email" required placeholder="admin@test.com" />
+          </label>
+          <label>
+            Mot de passe
+            <input id="loginPassword" type="password" required placeholder="123456" />
+          </label>
+          <button type="submit">Se connecter</button>
+          <p id="loginMessage" class="message"></p>
+        </form>
+      </section>
+
+      <section id="appView" class="app-view hidden">
+        <aside class="sidebar">
+          <div>
+            <p class="eyebrow">Maintenance</p>
+            <h2>GMAO Lab</h2>
+          </div>
+          <nav>
+            <button class="nav-button active" data-section="dashboard">Dashboard</button>
+            <button class="nav-button" data-section="equipements">Equipements</button>
+            <button class="nav-button" data-section="interventions">Interventions</button>
+            <button class="nav-button" data-section="maintenances">Maintenances</button>
+            <button class="nav-button admin-only" data-section="users">Utilisateurs</button>
+            <button class="nav-button" data-section="notifications">Notifications</button>
+          </nav>
+          <button id="logoutBtn" class="logout-button">Deconnexion</button>
+        </aside>
+
+        <section class="content">
+          <header class="topbar">
+            <div>
+              <p id="userRole" class="eyebrow"></p>
+              <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <button id="refreshBtn" class="secondary-button">Actualiser</button>
+          </header>
+
+          <p id="appMessage" class="message"></p>
+
+          <section id="dashboard" class="page-section"></section>
+
+          <section id="equipements" class="page-section hidden">
+            <form id="equipementForm" class="form-grid admin-only">
+              <input type="hidden" id="equipementId" />
+              <input id="equipementReference" placeholder="Reference" required />
+              <input id="equipementNom" placeholder="Nom" required />
+              <input id="equipementCategorie" placeholder="Categorie" />
+              <input id="equipementNumeroSerie" placeholder="Numero serie" />
+              <input id="equipementDateAchat" type="date" />
+              <select id="equipementEtat">
+                <option>Disponible</option>
+                <option>En panne</option>
+                <option>En maintenance</option>
+                <option>Hors service</option>
+              </select>
+              <input id="equipementSalle" placeholder="Salle / Service" />
+              <select id="equipementStatut">
+                <option>Actif</option>
+                <option>Inactif</option>
+              </select>
+              <button type="submit">Enregistrer</button>
+              <button type="button" class="secondary-button" id="cancelEquipementEdit">Annuler</button>
+            </form>
+            <div id="equipementsList" class="table-wrap"></div>
+          </section>
+
+          <section id="interventions" class="page-section hidden">
+            <form id="interventionForm" class="form-grid">
+              <input type="hidden" id="interventionId" />
+              <input id="interventionTitre" placeholder="Titre" required />
+              <select id="interventionType">
+                <option>PANNE</option>
+                <option>MAINTENANCE</option>
+                <option>INSTALLATION</option>
+                <option>AUTRE</option>
+              </select>
+              <select id="interventionPriorite">
+                <option>NORMALE</option>
+                <option>BASSE</option>
+                <option>HAUTE</option>
+                <option>URGENTE</option>
+              </select>
+              <select id="interventionStatut">
+                <option>OUVERTE</option>
+                <option>EN_COURS</option>
+                <option>TERMINEE</option>
+                <option>ANNULEE</option>
+              </select>
+              <select id="interventionEquipementId" required></select>
+              <select id="interventionTechnicienId"></select>
+              <textarea id="interventionDescription" placeholder="Description du probleme"></textarea>
+              <textarea id="interventionCommentaire" placeholder="Solution / commentaire"></textarea>
+              <button type="submit">Enregistrer</button>
+              <button type="button" class="secondary-button" id="cancelInterventionEdit">Annuler</button>
+            </form>
+            <div id="interventionsList" class="table-wrap"></div>
+          </section>
+
+          <section id="maintenances" class="page-section hidden">
+            <form id="maintenanceForm" class="form-grid admin-tech">
+              <input type="hidden" id="maintenanceId" />
+              <input id="maintenanceTitre" placeholder="Titre" required />
+              <select id="maintenanceType">
+                <option>PREVENTIVE</option>
+                <option>CORRECTIVE</option>
+              </select>
+              <input id="maintenanceDatePrevue" type="datetime-local" required />
+              <select id="maintenanceStatut">
+                <option>PROGRAMMEE</option>
+                <option>EN_COURS</option>
+                <option>TERMINEE</option>
+                <option>ANNULEE</option>
+                <option>EN_RETARD</option>
+              </select>
+              <select id="maintenanceEquipementId" required></select>
+              <select id="maintenanceTechnicienId"></select>
+              <textarea id="maintenanceDescription" placeholder="Description"></textarea>
+              <textarea id="maintenanceCommentaire" placeholder="Commentaire"></textarea>
+              <button type="submit">Enregistrer</button>
+              <button type="button" class="secondary-button" id="cancelMaintenanceEdit">Annuler</button>
+            </form>
+            <div id="maintenancesList" class="table-wrap"></div>
+          </section>
+
+          <section id="users" class="page-section hidden">
+            <form id="userForm" class="form-grid admin-only">
+              <input type="hidden" id="userId" />
+              <input id="userNom" placeholder="Nom" required />
+              <input id="userEmail" type="email" placeholder="Email" required />
+              <input id="userPassword" type="password" placeholder="Mot de passe" />
+              <select id="userRoleInput">
+                <option>USER</option>
+                <option>TECH</option>
+                <option>ADMIN</option>
+              </select>
+              <button type="submit">Enregistrer</button>
+              <button type="button" class="secondary-button" id="cancelUserEdit">Annuler</button>
+            </form>
+            <div id="usersList" class="table-wrap"></div>
+          </section>
+
+          <section id="notifications" class="page-section hidden">
+            <div id="notificationsList" class="cards-grid"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

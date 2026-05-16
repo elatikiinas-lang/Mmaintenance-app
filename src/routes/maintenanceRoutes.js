@@ -2,52 +2,39 @@ const express = require("express");
 
 const router = express.Router();
 
-const equipementController = require("../controllers/equipementController");
-
+const maintenanceController = require("../controllers/maintenanceController");
 const verifyToken = require("../middleware/authMiddleware");
 const authorizeRoles = require("../middleware/roleMiddleware");
 
-
-// CREATE
 router.post(
   "/",
   verifyToken,
   authorizeRoles("ADMIN"),
-  equipementController.createEquipement
+  maintenanceController.createMaintenance
 );
-
-
-// GET ALL
 router.get(
   "/",
   verifyToken,
-  equipementController.getAllEquipements
+  authorizeRoles("ADMIN", "TECH"),
+  maintenanceController.getAllMaintenances
 );
-
-
-// GET ONE
 router.get(
   "/:id",
   verifyToken,
-  equipementController.getEquipementById
+  authorizeRoles("ADMIN", "TECH"),
+  maintenanceController.getMaintenanceById
 );
-
-
-// UPDATE
 router.put(
   "/:id",
   verifyToken,
-  authorizeRoles("ADMIN"),
-  equipementController.updateEquipement
+  authorizeRoles("ADMIN", "TECH"),
+  maintenanceController.updateMaintenance
 );
-
-
-// DELETE
 router.delete(
   "/:id",
   verifyToken,
   authorizeRoles("ADMIN"),
-  equipementController.deleteEquipement
+  maintenanceController.deleteMaintenance
 );
 
 module.exports = router;
