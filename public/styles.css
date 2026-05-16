@@ -78,21 +78,6 @@ button {
   background: linear-gradient(90deg, var(--gold), #f2d47b, var(--accent));
 }
 
-.institution-strip {
-  width: min(680px, 100%);
-  padding: 12px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.institution-strip img,
-.academy-banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .brand-lockup {
   display: flex;
   align-items: center;
@@ -153,14 +138,21 @@ button {
 }
 
 .login-card h2 {
-  margin: 8px 0 4px;
+  margin: 18px 0 4px;
   font-size: 28px;
 }
 
+.login-logo-bar {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
 .login-logo {
-  width: 100%;
+  width: min(260px, 100%);
   height: auto;
-  max-height: 92px;
+  max-height: 70px;
   object-fit: contain;
 }
 
@@ -318,14 +310,6 @@ nav {
 .content {
   min-width: 0;
   padding: 24px 28px 36px;
-}
-
-.academy-banner {
-  margin-bottom: 18px;
-  padding: 10px 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .topbar {
