@@ -16,6 +16,8 @@ require("./src/models/Notification");
 
 // Middleware
 app.use(express.json());
+
+// Static files
 app.use("/app", express.static(path.join(__dirname, "public")));
 
 app.get("/app", (req, res) => {
@@ -48,16 +50,19 @@ app.get("/", (req, res) => {
   res.send("Backend is working");
 });
 
-// Sync DB + start server
+// Database connection test
 sequelize
-  .sync({ alter: true })
+  .authenticate()
   .then(() => {
-    console.log("Database synced");
-
-    app.listen(process.env.PORT || 5000, () => {
-      console.log("Server running on port " + (process.env.PORT || 5000));
-    });
+    console.log("Database connected");
   })
   .catch((err) => {
-    console.log("DB error:", err);
+    console.log("DB connection error:", err);
   });
+
+// Start server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
